@@ -1,0 +1,50 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+//Daniel Ginzberg
+//May 23, 2016
+
+
+public class truck extends Obstacles
+{
+	private static double speed=1;
+	private static int length=160;
+	private boolean usable;
+
+
+
+
+	public truck(double x, double y) 
+	{
+		super(x, y, length ,speed);
+		usable = true;
+		
+		
+	}
+
+
+
+	@Override
+	public void move() 
+	{
+		// TODO Auto-generated method stub
+		this.setX(this.getX()+speed);
+		if(this.getX()>751)
+		{
+			this.setX(-160);
+		}
+		
+	}
+	
+
+
+
+	@Override
+	public void drawObstacle(Graphics2D g2) 
+	{
+		g2.setColor(Color.BLUE);
+		g2.fill(boundry());
+	}
+	
+	
+}

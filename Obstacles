@@ -1,0 +1,76 @@
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
+import java.util.ArrayList;
+
+//Daniel Ginzberg
+//May 11, 2016
+
+public abstract class Obstacles 
+{
+	
+  private int height = 50;
+  private double x, y;
+  private int length;
+  private double speed;
+
+  
+ 
+ public Obstacles(double x, double y, int length, double speed)
+ {
+    this.x = x;
+    this.y = y;
+    this.length=length;
+    this.setSpeed(speed);
+   
+ }  
+ public Rectangle2D.Double boundry()
+ {
+	 return new Rectangle2D.Double(x, y, length, height);
+ }
+ 
+ public abstract void drawObstacle(Graphics2D g2);
+ public abstract void move();
+ 
+public int getHeight() {
+	return height;
+}
+
+public void setHeight(int height) {
+	this.height = height;
+}
+
+public double getX() {
+	return x;
+}
+
+public int getLength() {
+	return length;
+}
+public void setLength(int length) {
+	this.length = length;
+}
+public void setX(double d) {
+	this.x = d;
+}
+
+public double getY() {
+	return y;
+}
+
+public void setY(int y) {
+	this.y = y;
+}
+public void fill(Double boundry) {
+	// TODO Auto-generated method stub
+	
+}
+public double getSpeed() {
+	return speed;
+}
+public void setSpeed(double speed) {
+	this.speed = speed;
+}
+
+}
