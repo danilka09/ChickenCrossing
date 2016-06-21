@@ -1,0 +1,167 @@
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+
+import javax.swing.ImageIcon;
+
+
+//Daniel Ginzberg
+//May 11, 2016
+
+public class Chicken 
+{
+    private static final int CHICKEN_SPEED =50;
+	private  int x;
+	private  int y;
+	private int lives;
+	private boolean right, left, up, down;
+	private ImageIcon icon;
+	
+	
+	public Chicken(int x, int y, int lives)
+	{
+		this.x = x;
+		this.y = y;
+		this.lives = lives;
+		this.icon = new ImageIcon("");
+	}
+	
+	public void update()
+	{
+		if(up) 
+			y-= CHICKEN_SPEED;
+		if(down) 
+			y += CHICKEN_SPEED;
+		if(left)
+			x -= CHICKEN_SPEED;	
+		if(right) 
+			x += CHICKEN_SPEED;
+		
+		
+	}
+	
+	public void drawChicken(Graphics2D g2)
+	{
+		g2.fill(getBounds());
+
+	}
+	
+	public static int getChickenSpeed() {
+		return CHICKEN_SPEED;
+	}
+
+	
+	public Rectangle2D getBounds()
+	{
+		
+		return new Rectangle2D.Double(x, y, 48, 48);
+	}
+
+	
+	public void setImage(String directory) {
+		this.icon.setImage(new ImageIcon(directory).getImage());
+	}
+	
+	public void setUp(boolean b)
+	{
+		up = b;
+	}
+	public void setDown(boolean b)
+	{
+		down = b;
+	}
+	public void setRight(boolean b)
+	{
+		right = b;
+	}
+	public void setLeft(boolean b)
+	{
+		left = b;
+	}
+	
+//	public void moveDown()
+//	{
+//		this.setY(this.getY()+CHICKEN_SPEED);
+//	}
+//	
+//	public void moveRight()
+//	{
+//		this.setX(this.getX()+CHICKEN_SPEED);
+//	}
+//	
+//	public void moveLeft()
+//	{
+//		this.setX(this.getX()-CHICKEN_SPEED);
+//	}
+	
+	public boolean isDead()
+	{
+		System.out.println("hello");
+		if(lives == 0)																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public boolean intersect(Chicken chick, Obstacles obs)
+	{
+		if(obs.boundry().intersects(getBounds()) && y>450)
+				{
+					System.out.println("car");
+////					x = 352;
+////					y = 752;
+////					loseLife();
+					return true;
+				}
+//		
+		else if(y<400 && !(obs.boundry().intersects(getBounds())))
+		{
+			System.out.println("water");
+			return true;
+		}
+		if(obs.boundry().intersects(getBounds()) && y<350 && y >250 || y< 200)
+		{
+			chick.setX((int) (chick.getX()+obs.getSpeed()));
+		}
+		if(obs.boundry().intersects(getBounds()) && y<400 && y>350 || y< 250)
+		{
+			chick.setX((int) (chick.getX()-obs.getSpeed()));
+		}
+		return false;
+	}
+	public void loseLife()
+	{
+		System.out.println("3");
+		lives--;
+		System.out.println(lives);
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) 
+	{
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getLives() {
+		return lives;
+	}
+
+	public void setLives(int lives) {
+		this.lives = lives;
+	}
+
+
+	
+
+}
